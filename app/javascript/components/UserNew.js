@@ -5,6 +5,8 @@ const UserNew = ({ user }) => {
   const { first_name, last_name } = user
   const defaultFirstName = first_name ? first_name :  ""
   const defaultLastName = last_name ? last_name :  ""
+  // const defaultEmail = email ? email : ""
+  // const defaultPassword = password ? password : ""
   return(
     <>
       <h1>Add User</h1>

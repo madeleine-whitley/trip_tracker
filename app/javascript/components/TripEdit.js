@@ -2,7 +2,7 @@ import React from 'react';
 
 const TripEdit = ({ user, trip }) => {
 
-  const { id, full_name } = user 
+  const { id } = user 
   const { name, duration } = trip
   const defaultName = name ? name : ""
   const defaultDuration = duration ? duration : ""

@@ -7,7 +7,7 @@ const User = ({ user, fullName }) => {
       <a>Edit</a>
       <a>Delete</a>
       <h2>Trips</h2>
-      
+      <a href = {`/users/${user.id}/trips`}>Go to Trips</a>
     </>
   )
 }

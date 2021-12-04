@@ -1,53 +1,60 @@
-class CoursesController < ApplicationController
+class TripsController < ApplicationController
+  before_action :set_user
   before_action :set_trip, only: [:show, :edit, :update, :destroy]
-
+  
   def index
-    @trips = Trip.all 
-    render component: 'Trips', props: { trips: @trips }
+    @trips = @user.trips
+    render component: 'Trips', props: { trips: @trips, user: @user }
   end
 
   def show
-    render component: 'Trip', props: { trip: @trip }
+    render component: 'Trip', props: { trip: @trip, user: @user}
   end
 
   def new
-    @trip = Trip.new
-    render component: 'TripNew', props: { trip: @trip }
+    @trip = @user.trips.new
+    render component: 'TripNew', props: { trip: @trip, user: @user }
   end
 
   def create 
-    @trip = Trip.new(trip_params)
+    @trip = @user.trips.new(trip_params)
 
     if @trip.save
       redirect_to trips_path
     else
-      render component: 'TripNew', props: { trip: @trip }
+      render component: 'TripNew', props: { trip: @trip, user: @user }
     end
   end
 
   def edit
-    render component: 'TripEdit', props: { trip: @trip }
+    render component: 'TripEdit', props: { trip: @trip, user: @user  }
   end
 
   def update
     if @trip.update(trip_params)
-      redirect_to trips_path
+      redirect_to user_trips_path(@user)
     else
-      render component: 'TripEdit', props: { trip: @trip }
+      render component: 'TripEdit', props: { trip: @trip, user: @user }
     end
   end
 
   def destroy
     @trip.destroy
-    redirect_to trips_path
+    redirect_to user_trips_path(@user)
   end
 
   private 
     def set_trip
-      @trip = Trip.find(params[:id])
+      @trip = @users.trips.find(params[:id])
+    end
+
+
+    def set_user
+      @user = User.find(params[:user_id])
     end
 
     def trip_params
       params.require(:trip).permit(:name, :duration)
     end
+
 end

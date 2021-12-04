@@ -1,20 +1,22 @@
 import React from "react";
 
-const TripNew = ({ trip }) => {
-    const { name, duration, errors } = trip;
+const TripNew = ({ trip, user }) => { 
+    const { id } = user;
+    const { name, duration } = trip;
     const defaultName = name ? name : "";
     const defaultDuration = duration ? duration : "";
     return (
       <>
         <h1>Add Trip</h1>
-        { errors && errors }
-        <form action="/trips" method="post">
+        <form action={`/users/${id}/trips`} method="post">
+          <label>Place</label>
           <input
             placeholder="Name"
             type="text"
             defaultValue={defaultName}
             name="trip[name]"
           />
+          <label>Duration</label>
           <input
             placeholder="Duration"
             type="text"
@@ -24,6 +26,7 @@ const TripNew = ({ trip }) => {
           <button type="submit">Add</button>
         </form>
       </>
+      
     );
 }
 

@@ -1,6 +1,7 @@
 import React from "react";
 
-const Trips = ({ trips }) => {
+const Trips = ({ trips, user }) => {
+  const { id } = user
   return (
     <>
       <h1>Trips</h1>
