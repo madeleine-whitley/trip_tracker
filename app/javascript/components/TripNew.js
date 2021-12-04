@@ -1,10 +1,10 @@
 import React from "react";
 
 const TripNew = ({ trip, user }) => { 
-    const { id } = user;
-    const { name, duration } = trip;
-    const defaultName = name ? name : "";
-    const defaultDuration = duration ? duration : "";
+    const { id } = user
+    const { name, duration } = trip
+    const defaultName = name ? name : ""
+    const defaultDuration = duration ? duration : ""
     return (
       <>
         <h1>Add Trip</h1>
